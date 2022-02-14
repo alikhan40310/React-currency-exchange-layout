@@ -9,34 +9,50 @@ export default function SecondPage() {
   console.log(userValue);
   const baseCurrencies = ["abcd", "efgh", "ijkl", "mnop", "qrst", "uvwx", "yz"];
 
-  const Input = styled.input`
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 2px 6px 0 rgba(31,38,135,0.37);
-  border-radius: 0.5rem;
-  width: 80%;
-  height: 3rem;
-  padding: 1rem;
-  border: none;
-  outline: none;
-  color: #3c354e;
-  font-size: 1rem;
-  font-weight: 500;
-  &:focus {
-    display: inline-block;
-    box-shadow: 0 0 0 0.2rem #b9abe0;
-    backdrop-filter: blur(12rem);
-    border-radius: 1.2rem;
-  }
-  &::placeholder {
-    color: #000;
-    font-weight: 100;
-    font-size: 1rem;
-  }
+  const MainDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top:50px;
+  height: 80vh;
+}
 `;
-
-  const Button = styled.button`
+  const Div = styled.div`
+  // display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 60vh;
+  width: 30vw;  
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(8.5px);
+  -webkit-backdrop-filter: blur(8.5px);
+  border-radius: 10px;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.4rem;
+  @media (max-width:1199px) {
+    width: 50vw;
+  }
+  @media (max-width:991px) {
+    width: 70vw;
+    padding: 1.2rem;
+  }
+}
+`;
+  const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: start;
+  margin-top: 20px;
+   
+`;
+const Button = styled.button`
   background: #1da1f2;
   color: white;
+  position: absolute;
+  bottom: 17%;
   border:2px solid #1da1f2;
   border-radius: 7px;
   padding: 20px 60px;
@@ -51,94 +67,105 @@ export default function SecondPage() {
   :focus {
     outline: none;
   }
-`;
-
-  const MainDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top:50px;
-}
-`;
-
-  const Div = styled.div`
-  // display: flex;
-  align-items: center;
-  flex-direction: column;
-  height: 80vh;
-  width: 30vw;  
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(8.5px);
-  -webkit-backdrop-filter: blur(8.5px);
-  border-radius: 10px;
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: 0.4rem;
-}
-`;
-
-  const InputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  height: 20%;
-  width: 100%;
-`;
-  const DropDownContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: start;
-  
-  margin-top: 20px;
-`;
-
-  const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: start;
-  margin-top: 20px;
+  @media (max-width:479px) {
+  bottom: 3%;
+   
+  } 
 `;
 const TextContainer = styled.div`
   color:black;
-  margin-left:2vw;
-  margin-bottom:10px;
+  margin-left:3vw;
+  margin-top:80px;
 `;
 const Paragraph = styled.p`
-
+  text-transform: capitalize;
+  font-size: 1.2rem;
 `;
 const Heading2 = styled.h2`
+  font-size: 1.5rem;
+  font-weight: 600;
+`;
+const MainHeader = styled.div`
+  background:#00be28;
+  height: 10vh;
 
+  @media (max-width:1300px) {
+    height: 12vh;
+  }
+  @media (max-width:479px) {
+    height: auto;
+  } 
+`;
+const HeaderTitle = styled.div`
+  font-size: 2rem;
+  text-transform: capitalize;
+  font-weight: 600;
+  color: white;
+`;
+const InnerHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  @media (max-width:479px) {
+    flex-direction: column;
+  }
+`;
+const Arrow = styled.button`
+  font-size: 2rem;
+  background: #00be28;
+  border:1px solid #00be28;
+  color:#fff;
+  margin-right:10px;
+  font-weight:bold;
+  cursor:pointer;
+`;
+const DropdownContainer = styled.div`
+  width: 12%;
+  @media (max-width:1199px) {
+    width: 12%;
+    
+  } 
+  @media (max-width:991px) {
+    width: 25%;
+  }  
+  @media (max-width:479px) {
+    margin-left:12%;
+    width: 40%;
+    margin-top:20px;
+  }  
 `;
   return (
+    <div>
+      <MainHeader>
+      <InnerHeader>
+        <HeaderTitle>
+       <Arrow> 🠔 </Arrow>currency Converter
+        </HeaderTitle>
+        <DropdownContainer>
+          <Dropdown id="baseId" title="From" style={{width: "100", height:"6"}} options={baseCurrencies} />
+        </DropdownContainer>
+      </InnerHeader>
+    </MainHeader>
+    
+
+
+
     <MainDiv>
       <Div>
         <Title>Exchange Rates</Title>
         <TextContainer>
           <Paragraph>To $ 10.000</Paragraph>
           <Heading2>$1.224</Heading2>
-        </TextContainer>
-        <TextContainer>
           <Paragraph>To $ 10.000</Paragraph>
           <Heading2>$1.224</Heading2>
         </TextContainer>
-        <TextContainer>
-          <Paragraph>To $ 10.000</Paragraph>
-          <Heading2>$1.224</Heading2>
-        </TextContainer>
-        <InputContainer>
-          <Input id="inputId" type="text" placeholder="Currency Value" value={userValue} handleOnChange={(value) => console.log({ value })} />
-        </InputContainer>
-        <DropDownContainer>
-          <Dropdown id="baseId" title="From" style={{ width: "25vw" }} options={baseCurrencies} />
-        </DropDownContainer>
+
+  
         <ButtonContainer>
           <Button>Back</Button>
         </ButtonContainer>
       </Div>
     </MainDiv>
+    </div>
   )
 }

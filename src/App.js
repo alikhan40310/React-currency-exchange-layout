@@ -10,29 +10,34 @@ import logoo from './index.png';
 function App() {
   const [userValue, setUserValue] = useState('');
   console.log(userValue)
-  const Input = styled.input`
+  let Input;
+  let width = '22.3vw';
+  let height = '3vh';
+  Input = styled.input`
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0 2px 6px 0 rgba(31,38,135,0.37);
   border-radius: 0.5rem;
-  width: 80%;
-  height: 3rem;
-  padding: 1rem;
+  height: ${height};
+  padding: 1rem 1.6rem;
   border: none;
   outline: none;
   color: #3c354e;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
+  margin-top: 20px;
+  margin-bottom: 30px;
   &:focus {
     display: inline-block;
-    box-shadow: 0 0 0 0.2rem #b9abe0;
+    box-shadow: 0 0 0 0.2rem #00be28;
     backdrop-filter: blur(12rem);
-    border-radius: 1.2rem;
+    border-radius: 0.5rem;
   }
   &::placeholder {
     color: #000;
-    font-weight: 100;
+    font-weight: 500;
     font-size: 1rem;
   }
+    width:80%;
 `;
 const Button = styled.button`
   background: #1da1f2;
@@ -51,17 +56,19 @@ const Button = styled.button`
   :focus {
     outline: none;
   }
+  
 `;
-
 const MainDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top:50px;
+  @media (max-width:1199px) {
+    padding:5%;
+  }
 }
 `;
 const Div = styled.div`
-  // display: flex;
   align-items: center;
   flex-direction: column;
   height: 80vh;
@@ -74,30 +81,49 @@ const Div = styled.div`
   color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 0.4rem;
+  // responsive design using media queries
+  @media (max-width:1300px) {
+    width: 50vw;
+  } 
+  @media (max-width:1199px) {
+    width: 60vw;
+  } 
+  @media (max-width:991px) {
+    width: 70vw;
+    padding: 1rem;
+    height: 85vh;
+
+  }  
+  @media (max-width:768px) {
+    width: 100vw;
+  }  
+  @media (max-width:479px) {
+    height: 90vh;
+  }  
 }
 `;
-const InputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  height: 20%;
-  width: 100%;
-`;
-const DropDownContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: start;
+const DropdownContainer = styled.div`
+width: 12%;
+@media (max-width:1199px) {
+  width: 12%;
   
-  margin-top: 20px;
+} 
+@media (max-width:991px) {
+  width: 25%;
+}  
+@media (max-width:479px) {
+  margin-left:12%;
+  width: 40%;
+  margin-top:20px;
+}  
 `;
-
+const ContentContainer = styled.div`
+  text-align: center;
+`;
 const ItemCenter = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
 `;
 const Image = styled.img`
   justify-content: center;
@@ -115,19 +141,27 @@ const ButtonContainer = styled.div`
 const MainHeader = styled.div`
   background:#00be28;
   height: 10vh;
-
+  
+  @media (max-width:1300px) {
+    height: 12vh;
+  }
+  @media (max-width:479px) {
+    height: auto;
+  }
 `;
 const HeaderTitle = styled.div`
   font-size: 2rem;
   text-transform: capitalize;
   font-weight: 600;
   color: white;
-  
 `;
 const InnerHeader = styled.div`
-display: flex;
-justify-content: space-between;
-padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  @media (max-width:479px) {
+    flex-direction: column;
+  } 
 `;
 const Arrow = styled.button`
   font-size: 2rem;
@@ -136,6 +170,7 @@ const Arrow = styled.button`
   color:#fff;
   margin-right:10px;
   font-weight:bold;
+  cursor:pointer;
 `;
 const baseCurrencies = ["abcd","efgh","ijkl","mnop","qrst","uvwx","yz"];
   return (
@@ -143,24 +178,27 @@ const baseCurrencies = ["abcd","efgh","ijkl","mnop","qrst","uvwx","yz"];
     <MainHeader>
       <InnerHeader>
         <HeaderTitle>
-       <Arrow> ← </Arrow>currency Converter
+       <Arrow> 🠔 </Arrow>currency Converter
         </HeaderTitle>
-        <Dropdown id="baseId" title="From" style={{width: "10vw", height:"5.5vh"}} options={baseCurrencies} />
+        <DropdownContainer>
+          <Dropdown id="baseId" title="From" style={{width: "100", height:"6"}} options={baseCurrencies} />
+        </DropdownContainer>
       </InnerHeader>
     </MainHeader>
-    
+
+        
+
+
     <MainDiv>
       <Div>
         <Title>Currency Converter</Title>
         <ItemCenter>
           <Image src={logoo} style={{ width: 300, height: 300 }} alt="logo" />
-          </ItemCenter>
-        <InputContainer>
-          <Input id="inputId" type="text" placeholder="Currency Value" value={userValue} handleOnChange={(value) => console.log({value})} />
-        </InputContainer>
-        <DropDownContainer>
-          <Dropdown id="baseId" title="From" style={{width: "25vw"}} options={baseCurrencies} />
-        </DropDownContainer> 
+        </ItemCenter>
+          <ContentContainer>
+            <Input id="inputId" type="text" placeholder="Currency Value" value={userValue} handleOnChange={(value) => console.log({value})} />
+            <Dropdown id="baseId"  title="From" style={{width: "89", height: '6'}} options={baseCurrencies} />
+          </ContentContainer>
         <ButtonContainer>
           <Button>Transfer</Button>
         </ButtonContainer>
