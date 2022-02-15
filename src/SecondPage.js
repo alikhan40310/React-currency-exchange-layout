@@ -71,6 +71,11 @@ const Button = styled.button`
   bottom: 3%;
    
   } 
+  @media (max-width:768px) {
+    width: 50%;
+    padding: 12px 0px;
+    margin:0;
+  }
 `;
 const TextContainer = styled.div`
   color:black;
@@ -142,7 +147,7 @@ const DropdownContainer = styled.div`
        <Arrow> 🠔 </Arrow>currency Converter
         </HeaderTitle>
         <DropdownContainer>
-          <Dropdown id="baseId" title="From" style={{width: "100", height:"6"}} options={baseCurrencies} />
+          <Dropdown id="baseId" title="From"  options={baseCurrencies} />
         </DropdownContainer>
       </InnerHeader>
     </MainHeader>

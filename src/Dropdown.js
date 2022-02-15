@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 
 
-export const Dropdown = ({ id, title, style, options }) => {
+export const Dropdown = ({ id, title, options }) => {
   let Select;
-  if (style && style.width) {
+  
     Select = styled.select`
     background: rgba(255, 255, 255, 0.15);
     box-shadow: 0 2px 6px 0 rgba(31,38,135,0.37);
@@ -18,12 +18,15 @@ export const Dropdown = ({ id, title, style, options }) => {
     // option styling
     margin:0px;
     margin-bottom:20px;
-    
     // custom styling of chevron
     background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right #fff;
     -webkit-appearance: none;
     background-position-x: calc(100% - 20px);
-    width: ${style.width}%;
+    width: 100%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color:#848181;
     option {
     color: black;
     background: white;
@@ -31,21 +34,20 @@ export const Dropdown = ({ id, title, style, options }) => {
     white-space: pre;
     min-height: 20px;
     margin-bottom: 0;
-      height: ${style.height}vh;
+    height: 3vh;
   }
 `;
-  }
-  console.log('style height: ', style, style.height)
+
   return (
     <>
-      { style && Select ? <Select>
+      <Select>
         <option value="" hidden>
           {title}
         </option>
         {options.map((option, i) => (
           <option>{option}</option>
         ))}
-      </Select>: undefined}
+      </Select>
       </>
   );
 };

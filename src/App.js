@@ -9,15 +9,13 @@ import logoo from './index.png';
 
 function App() {
   const [userValue, setUserValue] = useState('');
-  console.log(userValue)
   let Input;
-  let width = '22.3vw';
-  let height = '3vh';
   Input = styled.input`
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0 2px 6px 0 rgba(31,38,135,0.37);
   border-radius: 0.5rem;
-  height: ${height};
+  width:80%;
+  height: 2vh;
   padding: 1rem 1.6rem;
   border: none;
   outline: none;
@@ -37,26 +35,6 @@ function App() {
     font-weight: 500;
     font-size: 1rem;
   }
-    width:80%;
-`;
-const Button = styled.button`
-  background: #1da1f2;
-  color: white;
-  border:2px solid #1da1f2;
-  border-radius: 7px;
-  padding: 20px 60px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  margin: 10px;
-  transition: 0.3s all;
-  :hover {
-    opacity: 0.8;
-    transition: 0.3s all;
-  }
-  :focus {
-    outline: none;
-  }
-  
 `;
 const MainDiv = styled.div`
   display: flex;
@@ -138,6 +116,34 @@ const ButtonContainer = styled.div`
   align-items: start;
   margin-top: 20px;
 `;
+const Button = styled.button`
+  background: #1da1f2;
+  color: white;
+  border:2px solid #1da1f2;
+  border-radius: 7px;
+  padding: 20px 60px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin: 10px;
+  transition: 0.3s all;
+  :hover {
+    opacity: 0.8;
+    transition: 0.3s all;
+  }
+  :focus {
+    outline: none;
+  }
+  @media (max-width:768px) {
+    width: 89%;
+    padding: 12px 0px;
+    margin:0;
+  }
+  @media (max-width:479px) {
+    width: 94%;
+    padding: 12px 0px;
+    margin:0;
+  }
+`;
 const MainHeader = styled.div`
   background:#00be28;
   height: 10vh;
@@ -172,6 +178,19 @@ const Arrow = styled.button`
   font-weight:bold;
   cursor:pointer;
 `;
+const MainDropdownContainer = styled.div`
+  width: 89%;
+  margin-left: 5.5%;
+  @media (max-width:768px) {
+    width: 88%;
+    margin-left: 6%;
+  } 
+  @media (max-width:479px) {
+    width: 94%;
+    margin-left: 3%;
+
+  } 
+`;
 const baseCurrencies = ["abcd","efgh","ijkl","mnop","qrst","uvwx","yz"];
   return (
   <div>
@@ -181,7 +200,7 @@ const baseCurrencies = ["abcd","efgh","ijkl","mnop","qrst","uvwx","yz"];
        <Arrow> 🠔 </Arrow>currency Converter
         </HeaderTitle>
         <DropdownContainer>
-          <Dropdown id="baseId" title="From" style={{width: "100", height:"6"}} options={baseCurrencies} />
+          <Dropdown id="baseId" title="From" options={baseCurrencies} />
         </DropdownContainer>
       </InnerHeader>
     </MainHeader>
@@ -197,7 +216,9 @@ const baseCurrencies = ["abcd","efgh","ijkl","mnop","qrst","uvwx","yz"];
         </ItemCenter>
           <ContentContainer>
             <Input id="inputId" type="text" placeholder="Currency Value" value={userValue} handleOnChange={(value) => console.log({value})} />
-            <Dropdown id="baseId"  title="From" style={{width: "89", height: '6'}} options={baseCurrencies} />
+            <MainDropdownContainer>
+              <Dropdown id="baseId"  title="From"  options={baseCurrencies} />
+            </MainDropdownContainer>
           </ContentContainer>
         <ButtonContainer>
           <Button>Transfer</Button>
